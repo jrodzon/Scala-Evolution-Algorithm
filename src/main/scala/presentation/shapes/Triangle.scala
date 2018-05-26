@@ -1,5 +1,6 @@
-import java.awt.Graphics2D
-import java.awt.Polygon
+package presentation.shapes
+
+import java.awt.{Graphics2D, Polygon}
 
 class Triangle(xTriangle: Int, yTriangle: Int, wTriangle: Int, hTriangle: Int)
   extends Shape(xTriangle, yTriangle, wTriangle, hTriangle) {

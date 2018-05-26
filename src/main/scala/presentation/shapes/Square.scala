@@ -1,3 +1,5 @@
+package presentation.shapes
+
 import java.awt.Graphics2D
 
 class Square(xSquare: Int, ySquare: Int, len: Int)

@@ -1,17 +1,16 @@
-import scala.collection.mutable.ArrayBuffer
-import java.awt.Dimension
+package presentation
 
-import javax.swing._
+import java.awt.{Color, Dimension, Graphics2D}
 import java.awt.event._
 
+import javax.swing._
+import presentation.shapes.{Movable, Shape}
+
+import scala.collection.mutable.ArrayBuffer
 import scala.swing.Panel
-import java.awt.Color
-import java.awt.Graphics2D
 
-class ShapePanel() extends Panel {
+class ShapePanel(width : Int, height : Int) extends Panel {
 
-  val width = 800
-  val height = 400
   preferredSize = new Dimension(width, height)
   opaque = true
   background = Color.white
@@ -20,7 +19,7 @@ class ShapePanel() extends Panel {
     g.clearRect(0, 0, width, height)
 
     for(s <- shapes) {
-      g.setColor(s.getColor())
+      g.setColor(s.color)
       s.draw(g)
     }
   }
@@ -29,7 +28,12 @@ class ShapePanel() extends Panel {
 
   new Timer(10, new ActionListener {
     def actionPerformed(e: ActionEvent) {
-      for(s <- shapes) { s.move(width, height) }
+      for(s <- shapes) {
+        s match {
+          case _ : Movable => s.asInstanceOf[Movable].move(width, height)
+          case _ => Unit
+        }
+      }
       repaint
     }
   }).start

@@ -1,3 +1,5 @@
+package presentation
+
 import java.awt.Color
 
 import scala.util.Random
