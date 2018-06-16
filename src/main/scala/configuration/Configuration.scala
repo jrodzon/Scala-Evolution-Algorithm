@@ -17,4 +17,5 @@ object Configuration {
   val maxFit = 1000
   val targetX = 1200
   val maxXandY = 30
+  val populationSize = 30
 }
