@@ -44,3 +44,6 @@ project/plugins/project/
 ### Scala template
 *.class
 *.log
+
+### workspace
+.idea/workspace.xml
