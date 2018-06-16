@@ -24,6 +24,9 @@ class SampleGUI extends SimpleSwingApplication {
     val grass = new shapes.Rectangle(0, Configuration.groundSkyBorder, Configuration.width, Configuration.groundSkyBorder, Color.GREEN)
     shapePanel.addShape(grass)
 
+    val targetBox = new shapes.Triangle(Configuration.targetX - Configuration.targetWidth / 2, Configuration.groundSkyBorder, Configuration.targetWidth, Configuration.circleRadius)
+    shapePanel.addShape(targetBox)
+
     val sky = new shapes.Rectangle(0, 0, Configuration.width, Configuration.groundSkyBorder, Color.BLUE)
     shapePanel.addShape(sky)
 

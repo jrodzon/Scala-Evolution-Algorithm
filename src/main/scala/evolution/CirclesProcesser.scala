@@ -12,7 +12,7 @@ object CirclesProcesser{
     var circlesBuffer = new ArrayBuffer[ThrowPower]
       for (i <- 1 to populationSize) {
         circlesBuffer += ThrowPower(Random.nextDouble() * Configuration.maxXandY,
-          Random.nextDouble() * Configuration.maxXandY, Configuration.maxFit)
+          Random.nextDouble() * Configuration.maxXandY + 1.0, Configuration.maxFit)
       }
     circlesBuffer.toList
   }
@@ -21,10 +21,8 @@ object CirclesProcesser{
   def mutateGen(bestThrows: List[ThrowPower]): List[ThrowPower] = {
     var newGeneration = new ArrayBuffer[ThrowPower]
     for (particularThrow <- bestThrows){
-//      for (i <- 1 to 6){
         newGeneration += ThrowPower(particularThrow.speedX + (Random.nextDouble() - 0.5) * Configuration.maxXandY/10,
           particularThrow.speedY + (Random.nextDouble() - 0.5) * Configuration.maxXandY/10, Configuration.maxFit)
-//      }
     }
     newGeneration.toList
   }
@@ -56,14 +54,6 @@ object CirclesProcesser{
     crossedSpecies.toList
   }
 
-//  val throws = generateFirstGen(30).toList
-//  for (t <- throws) {
-//    t.calculateFitness(Configuration.targetX)
-//    println(t.fitness)
-//  }}
-//  println()}
-//  println()
-
   def generateNextGeneration(throws: List[ThrowPower]): List[ThrowPower] = {
     val chosenParents = getParents(throws)
     val mutatedParents = mutateGen(throws)
@@ -74,7 +64,7 @@ object CirclesProcesser{
     for (t <- nextGen) {
       t.landingDiff()
     }
-    val nextGenSeriously = nextGen.sortBy(_.fitness).take(Configuration.populationSize)
+    val nextGenSeriously = nextGen.toSet[ThrowPower].toList.sortBy(_.fitness).take(Configuration.populationSize)
     nextGenSeriously
   }
 
@@ -124,12 +114,5 @@ object CirclesProcesser{
     chosenParents.toList
 
   }
-//
-//  val throws1 = mutateGen(takeBest(throws, 3))
-//
-//  for (t <- throws1) {
-//    t.calculateFitness(Configuration.targetX)
-//    println(t.fitness)
-//  }
 
 }

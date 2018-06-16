@@ -9,17 +9,25 @@ object AkkaManager extends App {
   // Create the 'actorFactory' actor system
   val system: ActorSystem = ActorSystem("actorFactory")
 
-  val firstGen = generateFirstGen(Configuration.populationSize)
-
   var currentGen = generateFirstGen(Configuration.populationSize)
-  for (i <- 1 to 10){
+  val drawer: ActorRef = system.actorOf(Drawer.props("Drawer", currentGen))
+  drawer ! Start
+  scala.io.StdIn.readLine()
+  while (true){
     val nextGen = generateNextGeneration(currentGen)
     currentGen = nextGen
+    val drawer: ActorRef = system.actorOf(Drawer.props("Drawer", currentGen))
+    drawer ! Start
+    val input = scala.io.StdIn.readLine()
+    if(input.equals("q")){
+      sys.exit()
+    }
+    system.stop(drawer)
   }
 
-  //sys.exit(1)
+  sys.exit(1)
   //#create-actors
-  val drawer: ActorRef = system.actorOf(Drawer.props("Drawer", currentGen))
+  val drawer1: ActorRef = system.actorOf(Drawer.props("Drawer", currentGen))
   //#create-actors
 
   //#main-send-messages

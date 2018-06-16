@@ -1,9 +1,11 @@
 package presentation.shapes
 
-import java.awt.{Graphics2D, Polygon}
+import java.awt.{Color, Graphics2D, Polygon}
 
 class Triangle(xTriangle: Int, yTriangle: Int, wTriangle: Int, hTriangle: Int)
   extends Shape(xTriangle, yTriangle, wTriangle, hTriangle) {
+
+  override val color: Color = Color.RED
 
   val numberSides = 3;
   val xpoints = new Array[Int](numberSides);

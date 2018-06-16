@@ -12,10 +12,12 @@ object Configuration {
   val gravitationFrequency : Int = 10
   val coefficientOfElasticity : Double = 0.6
   val minimalYSpeed : Double = 1.1
+  val targetWidth : Int = 10
+  val timeBetweenFrames : Int = 10
 
   //evolution-algorithm parameters
-  val maxFit = 1000
-  val targetX = 1200
+  val maxFit = 100000
+  val targetX = 500
   val maxXandY = 30
   val populationSize = 30
 }

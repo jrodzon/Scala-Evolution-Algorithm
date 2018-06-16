@@ -4,9 +4,9 @@ import configuration.Configuration
 
 case class ThrowPower(speedX: Double, var speedY: Double, var fitness: Double){
 
-  def landingDiff(): Unit ={
+  def landingDiff(): Unit = {
     val gravity: Double = Configuration.gravitation / Configuration.gravitationFrequency.toDouble
-    val landingX = (2 * speedY * speedX) / gravity
+    val landingX = (4 * speedY * speedX) / gravity - Configuration.xCircleStart
     println(speedX + " " + speedY + " " + landingX)
 
     fitness = math.abs(Configuration.targetX - landingX)

@@ -3,6 +3,7 @@ package presentation
 import java.awt.{Color, Dimension, Graphics2D}
 import java.awt.event._
 
+import configuration.Configuration
 import javax.swing._
 import presentation.shapes.{Movable, Shape}
 
@@ -26,7 +27,7 @@ class ShapePanel(width : Int, height : Int) extends Panel {
 
   var shapes = new ArrayBuffer[Shape]
 
-  new Timer(10, new ActionListener {
+  new Timer(Configuration.timeBetweenFrames, new ActionListener {
     def actionPerformed(e: ActionEvent) {
       for(s <- shapes) {
         s match {
