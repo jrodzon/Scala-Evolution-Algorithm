@@ -3,6 +3,7 @@ package presentation
 import java.awt.Color
 
 import configuration.Configuration
+import evolution.ThrowPower
 import presentation.shapes._
 
 import scala.swing._
@@ -11,8 +12,8 @@ class SampleGUI extends SimpleSwingApplication {
 
   var circles : List[Circle] = _
 
-  def setThrows(throws : List[Tuple2[Double, Double]]) : Unit = {
-    circles = throws.map(t => new Circle(Configuration.xCircleStart, Configuration.yCircleStart, Configuration.circleRadius, t._1, -t._2))
+  def setThrows(throws : List[ThrowPower]) : Unit = {
+    circles = throws.map(t => new Circle(Configuration.xCircleStart, Configuration.yCircleStart, Configuration.circleRadius, t.speedX, -t.speedY))
   }
 
   def top = new MainFrame {
