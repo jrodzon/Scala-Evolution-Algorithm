@@ -1,3 +1,5 @@
+package actors
+
 import akka.actor.{Actor, Props}
 import presentation.SampleGUI
 

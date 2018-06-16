@@ -1,7 +1,8 @@
+import actors.Drawer
 import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Props}
 
 object AkkaManager extends App {
-  import Drawer._
+  import actors.Drawer._
 
   // Create the 'actorFactory' actor system
   val system: ActorSystem = ActorSystem("actorFactory")

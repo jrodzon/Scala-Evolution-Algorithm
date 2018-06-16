@@ -1,18 +1,10 @@
+package evolution
+
+import configuration.Configuration
+
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
-
-case class ThrowPower(speedX: Double, var speedY: Double, var fitness: Double){
-
-  def calculateFitness(targetX: Int): Unit ={
-    val gravity :Double = Configuration.gravitation / Configuration.gravityFrequency.toDouble
-    val landingX = (2 * speedY * speedX) / gravity
-    println(speedX + " " + speedY + " " + landingX)
-
-    fitness = math.abs(targetX - landingX)
-  }
-
-}
 
 object CirclesProcesser{
   def main(args: Array[String]): Unit = {
