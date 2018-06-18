@@ -54,21 +54,6 @@ object CirclesProcesser{
     crossedSpecies.toList
   }
 
-  def generateNextGeneration(throws: List[ThrowPower]): List[ThrowPower] = {
-    val chosenParents = getParents(throws)
-    val mutatedParents = mutateGen(throws)
-    val crossedParents = crossGen(throws)
-    val newGen = generateFirstGen(Configuration.populationSize / 5)
-
-    val nextGen: List[ThrowPower] = chosenParents ++ mutatedParents ++ crossedParents ++ newGen
-    for (t <- nextGen) {
-      t.landingDiff()
-    }
-    val nextGenSeriously = nextGen.toSet[ThrowPower].toList.sortBy(_.fitness).take(Configuration.populationSize)
-    nextGenSeriously
-  }
-
-
   def getParents(throws: List[ThrowPower]): List[ThrowPower] = {
     var highest = 0.0
     var lowest = 0.0
@@ -83,10 +68,6 @@ object CirclesProcesser{
     }
 
     val sortedThrows = throws.sortBy(_.fitness)
-
-    for (t <- sortedThrows) {
-      println(t.fitness)
-    }
 
     var chosenParents = new ArrayBuffer[ThrowPower]
 

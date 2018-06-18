@@ -1,12 +1,12 @@
 import actors.Drawer
-import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Props}
+import akka.actor.{ActorRef, ActorSystem}
 import configuration.Configuration
-import evolution.CirclesProcesser._
+import evolution.CirclesProcesser.generateFirstGen
+import actors.Generator.generateNextGeneration
 
 object AkkaManager extends App {
   import actors.Drawer._
 
-  // Create the 'actorFactory' actor system
   val system: ActorSystem = ActorSystem("actorFactory")
 
   var currentGen = generateFirstGen(Configuration.populationSize)
@@ -24,13 +24,4 @@ object AkkaManager extends App {
     }
     system.stop(drawer)
   }
-
-  sys.exit(1)
-  //#create-actors
-  val drawer1: ActorRef = system.actorOf(Drawer.props("Drawer", currentGen))
-  //#create-actors
-
-  //#main-send-messages
-  drawer ! Start
-  //#main-send-messages
 }
