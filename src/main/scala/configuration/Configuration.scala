@@ -17,7 +17,7 @@ object Configuration {
 
   //evolution-algorithm parameters
   val maxFit = 100000
-  val targetX = 500
+  val targetX = 1000
   val maxXandY = 30
   val populationSize = 30
 }

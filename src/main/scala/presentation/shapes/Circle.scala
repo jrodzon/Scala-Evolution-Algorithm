@@ -29,7 +29,7 @@ class Circle (xCircle: Int, yCircle: Int, radius: Int, var xSpeed : Double, var 
       ySpeed = - ySpeed * Configuration.coefficientOfElasticity
     }
 
-    ySpeed += 0.63 * Configuration.gravitation / Configuration.gravitationFrequency.toDouble
+    ySpeed += Configuration.gravitation / Configuration.gravitationFrequency.toDouble
     currentXCoord += xSpeed
     if(!stabilizeYSpeed){
       currentYCoord += ySpeed
