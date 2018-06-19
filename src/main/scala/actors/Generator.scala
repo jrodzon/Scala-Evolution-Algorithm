@@ -21,12 +21,12 @@ object Generator {
     implicit val timeout: Timeout = Timeout(5 seconds)
 
     val futureParent: Future[List[ThrowPower]] = ask(myParentActor, Message(throws)).mapTo[List[ThrowPower]]
-    val resultParent = Await.result(futureParent, 1 second)
     val futureMutate: Future[List[ThrowPower]] = ask(myMutateActor, Message(throws)).mapTo[List[ThrowPower]]
-    val resultMutate = Await.result(futureMutate, 1 second)
     val futureCross: Future[List[ThrowPower]] = ask(myCrossActor, Message(throws)).mapTo[List[ThrowPower]]
-    val resultCross = Await.result(futureCross, 1 second)
     val futureNewGen: Future[List[ThrowPower]] = ask(myNewGenActor, Message(throws)).mapTo[List[ThrowPower]]
+    val resultParent = Await.result(futureParent, 1 second)
+    val resultMutate = Await.result(futureMutate, 1 second)
+    val resultCross = Await.result(futureCross, 1 second)
     val resultNewGen = Await.result(futureNewGen, 1 second)
 
     val wholeGen: List[ThrowPower] = resultParent ++ resultMutate ++ resultCross ++ resultNewGen
