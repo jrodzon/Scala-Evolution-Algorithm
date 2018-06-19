@@ -28,13 +28,8 @@ class Circle (xCircle: Int, yCircle: Int, radius: Int, var xSpeed : Double, var 
       }
       ySpeed = - ySpeed * Configuration.coefficientOfElasticity
     }
-//    if(noGravitationFrames >= Configuration.gravitationFrequency){
-//      noGravitationFrames = 0
-    ySpeed += 0.63 * Configuration.gravitation / Configuration.gravitationFrequency
-//    }
-//    else{
-//      noGravitationFrames += 1
-//    }
+
+    ySpeed += 0.63 * Configuration.gravitation / Configuration.gravitationFrequency.toDouble
     currentXCoord += xSpeed
     if(!stabilizeYSpeed){
       currentYCoord += ySpeed
